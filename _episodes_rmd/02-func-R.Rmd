@@ -123,25 +123,25 @@ Real-life functions will usually be larger than the ones shown here--typically h
 > In the last lesson, we learned to **c**ombine elements into a vector using the `c` function,
 > e.g. `x <- c("A", "B", "C")` creates a vector `x` with three elements.
 > Furthermore, we can extend that vector again using `c`, e.g. `y <- c(x, "D")` creates a vector `y` with four elements.
-> Write a function called `fence` that takes two vectors as arguments, called
-> `original` and `wrapper`, and returns a new vector that has the wrapper vector
-> at the beginning and end of the original:
+> Write a function called `highlight` that takes two vectors as arguments, called
+> `content` and `wrapper`, and returns a new vector that has the wrapper vector
+> at the beginning and end of the content:
 >
 > ```{r, echo=-1}
-> fence <- function(original, wrapper) {
->    answer <- c(wrapper, original, wrapper)
+> highlight <- function(content, wrapper) {
+>    answer <- c(wrapper, content, wrapper)
 >    return(answer)
 > }
 > best_practice <- c("Write", "programs", "for", "people", "not", "computers")
 > asterisk <- "***"  # R interprets a variable with a single value as a vector
 >                    # with one element.
-> fence(best_practice, asterisk)
+> highlight(best_practice, asterisk)
 > ```
 >
 > > ## Solution
 > > ~~~
-> > fence <- function(original, wrapper) {
-> >   answer <- c(wrapper, original, wrapper)
+> > highlight <- function(content, wrapper) {
+> >   answer <- c(wrapper, content, wrapper)
 > >   return(answer)
 > > }
 > > ~~~
@@ -212,8 +212,8 @@ Once we start putting things in functions so that we can re-use them, we need to
 To see how to do this, let's write a function to center a dataset around a particular value:
 
 ```{r}
-center <- function(data, around) {
-  new_data <- (data - mean(data)) + around
+center <- function(data, desired) {
+  new_data <- (data - mean(data)) + desired
   return(new_data)
 }
 ```
@@ -285,11 +285,11 @@ We have one more task first, though: we should write some [documentation]({{ pag
 A common way to put documentation in software is to add [comments]({{ page.root }}/reference.html#comment) like this:
 
 ```{r}
-center <- function(data, around) {
+center <- function(data, desired) {
   # return a new vector containing the original data centered around the
-  # around value.
+  # desired value.
   # Example: center(c(1, 2, 3), 0) => c(-1, 0, 1)
-  new_data <- (data - mean(data)) + around
+  new_data <- (data - mean(data)) + desired
   return(new_data)
 }
 ```
